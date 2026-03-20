@@ -1,9 +1,11 @@
 import datetime
+from decorator import logging_middleware
 
 # Упрощенная «база» задач
 TASKS_DB = {}
 
 
+@logging_middleware
 def create_task(title: str, user_id: int, due_date: datetime.date) -> dict:
     """
     Создает новую задачу и сохраняет ее в TASKS_DB.
@@ -28,6 +30,7 @@ def create_task(title: str, user_id: int, due_date: datetime.date) -> dict:
     return task_data
 
 
+@logging_middleware
 def complete_task(task_id: int) -> dict:
     """
     Отмечает задачу как завершенную.
@@ -44,7 +47,8 @@ def complete_task(task_id: int) -> dict:
 # Пример использования (для теста)
 if __name__ == "__main__":
     # Создаем задачу
-    new_task = create_task("Finish project", user_id=101, due_date=datetime.date(2025, 8, 1))
+    #old_task = create_task("Finish project", user_id=101, due_date=datetime.date(2025, 8, 1))
+    new_task = create_task("Finish project", user_id=101, due_date=datetime.date(2026, 8, 1))
     print("Created task:", new_task)
 
     # Завершаем задачу
